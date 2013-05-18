@@ -49,6 +49,10 @@
     <Compile Include="AlbumData.cs" />
     <Compile Include="Artist.cs" />
     <Compile Include="Album.cs" />
+    <Compile Include="Concatenation\Concat.cs" />
+    <Compile Include="Element\Element.cs" />
+    <Compile Include="Equality\SequenceEqual.cs" />
+    <Compile Include="Grouping\ToLookup.cs" />
     <Compile Include="Projection\SelectManyTests.cs" />
     <Compile Include="Projection\SelectTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,13 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Aggregation\" />
-    <Folder Include="Concatenation\" />
     <Folder Include="Conversion\" />
-    <Folder Include="Element\" />
-    <Folder Include="Equality\" />
     <Folder Include="Filtering\" />
     <Folder Include="Generation\" />
-    <Folder Include="Grouping\" />
     <Folder Include="Join\" />
     <Folder Include="Ordering\" />
     <Folder Include="Partinioning\" />

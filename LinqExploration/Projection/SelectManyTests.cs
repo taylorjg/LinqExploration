@@ -12,7 +12,7 @@ namespace LinqExploration.Projection
         [Test]
         public void SelectManyToGetTheTracksOfAllAlbums()
         {
-            var tracks = (AlbumData.Artists1.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks)).ToList();
+            var tracks = AlbumData.Artists1.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
 
             var totalNumberOfTracks = 0;
             foreach (var artist in AlbumData.Artists1)
@@ -23,7 +23,7 @@ namespace LinqExploration.Projection
                 }
             }
 
-            Assert.That(tracks, Is.InstanceOf<List<Track>>());
+            Assert.That(tracks, Is.AssignableTo<IEnumerable<Track>>());
             Assert.That(tracks.Count(), Is.EqualTo(totalNumberOfTracks));
         }
     }
