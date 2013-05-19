@@ -10,9 +10,7 @@ namespace LinqExploration
         public EnumerableWrapper(IEnumerable<T> sequence)
         {
             _enumerator = sequence.GetEnumerator();
-            NumCallsToMoveNext = 0;
-            NumCallsToCurrent = 0;
-            NumCallsToReset = 0;
+            ResetCallCounts();
         }
 
         public IEnumerator<T> GetEnumerator()
@@ -36,19 +34,19 @@ namespace LinqExploration
             NumCallsToReset = 0;
         }
 
-        public bool MoveNext()
+        private bool MoveNext()
         {
             NumCallsToMoveNext++;
             return _enumerator.MoveNext();
         }
 
-        public void Reset()
+        private void Reset()
         {
             NumCallsToReset++;
             _enumerator.Reset();
         }
 
-        public T Current
+        private T Current
         {
             get
             {
@@ -57,17 +55,18 @@ namespace LinqExploration
             }
         }
 
-        public class Enumerator : IEnumerator<T>
+        private void Dispose()
+        {
+            _enumerator.Dispose();
+        }
+
+        private class Enumerator : IEnumerator<T>
         {
             private readonly EnumerableWrapper<T> _enumerableWrapper;
 
             public Enumerator(EnumerableWrapper<T> enumerableWrapper)
             {
                 _enumerableWrapper = enumerableWrapper;
-            }
-
-            public void Dispose()
-            {
             }
 
             public bool MoveNext()
@@ -88,6 +87,11 @@ namespace LinqExploration
             object IEnumerator.Current
             {
                 get { return Current; }
+            }
+
+            public void Dispose()
+            {
+                _enumerableWrapper.Dispose();
             }
         }
     }
