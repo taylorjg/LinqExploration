@@ -5,17 +5,22 @@ namespace LinqExploration
 {
     public class EnumerableWrapper<T> : IEnumerable<T>
     {
-        private readonly IEnumerator<T> _enumerator;
+        private readonly IEnumerable<T> _sequence;
+        private readonly Dictionary<Enumerator, IEnumerator<T>> _enumerators = new Dictionary<Enumerator, IEnumerator<T>>();
 
         public EnumerableWrapper(IEnumerable<T> sequence)
         {
-            _enumerator = sequence.GetEnumerator();
+            _sequence = sequence;
             ResetCallCounts();
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            return new Enumerator(this);
+            NumCallsToGetEnumerator++;
+            var wrappingEnumerator = new Enumerator(this);
+            var realEnumerator = _sequence.GetEnumerator();
+            _enumerators.Add(wrappingEnumerator, realEnumerator);
+            return wrappingEnumerator;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -23,41 +28,50 @@ namespace LinqExploration
             return GetEnumerator();
         }
 
+        public int NumCallsToGetEnumerator { get; private set; }
         public int NumCallsToMoveNext { get; private set; }
         public int NumCallsToCurrent { get; private set; }
         public int NumCallsToReset { get; private set; }
+        public int NumCallsToDispose { get; private set; }
 
         public void ResetCallCounts()
         {
+            NumCallsToGetEnumerator = 0;
             NumCallsToMoveNext = 0;
             NumCallsToCurrent = 0;
             NumCallsToReset = 0;
+            NumCallsToDispose = 0;
         }
 
-        private bool MoveNext()
+        private bool MoveNext(Enumerator wrappingEnumerator)
         {
             NumCallsToMoveNext++;
-            return _enumerator.MoveNext();
+            return GetRealEnumerator(wrappingEnumerator).MoveNext();
         }
 
-        private void Reset()
+        private void Reset(Enumerator wrappingEnumerator)
         {
             NumCallsToReset++;
-            _enumerator.Reset();
+            GetRealEnumerator(wrappingEnumerator).Reset();
         }
 
-        private T Current
+        private T GetCurrent(Enumerator wrappingEnumerator)
         {
-            get
-            {
-                NumCallsToCurrent++;
-                return _enumerator.Current;
-            }
+            NumCallsToCurrent++;
+            return GetRealEnumerator(wrappingEnumerator).Current;
         }
 
-        private void Dispose()
+        private void Dispose(Enumerator wrappingEnumerator)
         {
-            _enumerator.Dispose();
+            NumCallsToDispose++;
+            var realEnumerator = GetRealEnumerator(wrappingEnumerator);
+            _enumerators.Remove(wrappingEnumerator);
+            realEnumerator.Dispose();
+        }
+
+        private IEnumerator<T> GetRealEnumerator(Enumerator wrappingEnumerator)
+        {
+            return _enumerators[wrappingEnumerator];
         }
 
         private class Enumerator : IEnumerator<T>
@@ -71,17 +85,17 @@ namespace LinqExploration
 
             public bool MoveNext()
             {
-                return _enumerableWrapper.MoveNext();
+                return _enumerableWrapper.MoveNext(this);
             }
 
             public void Reset()
             {
-                _enumerableWrapper.Reset();
+                _enumerableWrapper.Reset(this);
             }
 
             public T Current
             {
-                get { return _enumerableWrapper.Current; }
+                get { return _enumerableWrapper.GetCurrent(this); }
             }
 
             object IEnumerator.Current
@@ -91,7 +105,7 @@ namespace LinqExploration
 
             public void Dispose()
             {
-                _enumerableWrapper.Dispose();
+                _enumerableWrapper.Dispose(this);
             }
         }
     }

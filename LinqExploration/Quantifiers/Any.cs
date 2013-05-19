@@ -13,7 +13,9 @@ namespace LinqExploration.Quantifiers
             var enumerableWrapper = new EnumerableWrapper<int>(numbers);
             var actual = enumerableWrapper.Any(n => n >= 5);
             Assert.That(actual, Is.True);
+            Assert.That(enumerableWrapper.NumCallsToGetEnumerator, Is.EqualTo(1));
             Assert.That(enumerableWrapper.NumCallsToMoveNext, Is.EqualTo(5));
+            Assert.That(enumerableWrapper.NumCallsToDispose, Is.EqualTo(1));
         }
     }
 }
