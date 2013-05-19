@@ -56,6 +56,8 @@
     <Compile Include="Projection\SelectManyTests.cs" />
     <Compile Include="Projection\SelectTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quantifiers\Any.cs" />
+    <Compile Include="EnumerableWrapper.cs" />
     <Compile Include="Track.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,7 +71,6 @@
     <Folder Include="Join\" />
     <Folder Include="Ordering\" />
     <Folder Include="Partinioning\" />
-    <Folder Include="Quantifiers\" />
     <Folder Include="Set\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
