@@ -1,4 +1,4 @@
-﻿namespace LinqExploration
+﻿namespace LinqExploration.AlbumData
 {
     internal class Album
     {

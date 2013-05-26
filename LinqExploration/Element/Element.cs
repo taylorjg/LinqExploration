@@ -9,7 +9,7 @@ namespace LinqExploration.Element
         [Test]
         public void ElementAtReturnsTheElementAtTheGivenIndex()
         {
-            var album = AlbumData.Artists1.First().Albums.First();
+            var album = AlbumData.AlbumData.Artists1.First().Albums.First();
             var element = album.Tracks.ElementAt(3);
             Assert.That(element, Is.SameAs(album.Tracks[3]));
         }
@@ -17,7 +17,7 @@ namespace LinqExploration.Element
         [Test]
         public void ElementAtOrDefaultReturnsTheElementAtTheGivenIndex()
         {
-            var album = AlbumData.Artists1.First().Albums.First();
+            var album = AlbumData.AlbumData.Artists1.First().Albums.First();
             var element = album.Tracks.ElementAtOrDefault(3);
             Assert.That(element, Is.SameAs(album.Tracks[3]));
         }
@@ -25,7 +25,7 @@ namespace LinqExploration.Element
         [Test]
         public void ElementAtOrDefaultReturnsNullWhenTheGivenIndexIsBeyondTheEndOfTheSequence()
         {
-            var album = AlbumData.Artists1.First().Albums.First();
+            var album = AlbumData.AlbumData.Artists1.First().Albums.First();
             var element = album.Tracks.ElementAtOrDefault(99);
             Assert.That(element, Is.Null);
         }

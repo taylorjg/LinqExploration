@@ -46,23 +46,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlbumData.cs" />
-    <Compile Include="Artist.cs" />
-    <Compile Include="Album.cs" />
+    <Compile Include="AlbumData\AlbumData.cs" />
+    <Compile Include="AlbumData\Artist.cs" />
+    <Compile Include="AlbumData\Album.cs" />
     <Compile Include="Concatenation\Concat.cs" />
     <Compile Include="Element\Element.cs" />
     <Compile Include="Equality\SequenceEqual.cs" />
+    <Compile Include="AlbumData\EqualityComparers\TrackLengthEqualityComparer.cs" />
     <Compile Include="Grouping\ToLookup.cs" />
+    <Compile Include="AlbumData\EqualityComparers\TrackLengthInSecondsEqualityComparer.cs" />
     <Compile Include="Projection\SelectManyTests.cs" />
     <Compile Include="Projection\SelectTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quantifiers\Any.cs" />
     <Compile Include="EnumerableSpy.cs" />
+    <Compile Include="Quantifiers\All.cs" />
+    <Compile Include="Quantifiers\Contains.cs" />
     <Compile Include="Set\Distinct.cs" />
     <Compile Include="Set\Union.cs" />
     <Compile Include="Set\Intersect.cs" />
     <Compile Include="Set\Except.cs" />
-    <Compile Include="Track.cs" />
+    <Compile Include="AlbumData\Track.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -38,7 +38,7 @@ namespace LinqExploration.Quantifiers
             Assert.That(actual, Is.False);
             Assert.That(enumerableSpy.NumCallsToGetEnumerator, Is.EqualTo(1));
 
-            // The 11th call to MoveNext() returns false because we have reached the end of the sequence.
+            // There is an 11th call to MoveNext() to test for the end of the sequence.
             Assert.That(enumerableSpy.NumCallsToMoveNext, Is.EqualTo(itemCount + 1));
 
             Assert.That(enumerableSpy.NumCallsToDispose, Is.EqualTo(1));
