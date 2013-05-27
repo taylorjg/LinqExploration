@@ -53,6 +53,7 @@
     <Compile Include="Element\Element.cs" />
     <Compile Include="Equality\SequenceEqual.cs" />
     <Compile Include="AlbumData\EqualityComparers\TrackLengthEqualityComparer.cs" />
+    <Compile Include="Grouping\GroupBy.cs" />
     <Compile Include="Grouping\ToLookup.cs" />
     <Compile Include="AlbumData\EqualityComparers\TrackLengthInSecondsEqualityComparer.cs" />
     <Compile Include="Merging\Zip.cs" />

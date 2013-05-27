@@ -12,28 +12,34 @@ namespace LinqExploration.Grouping
         public void ToLookupGivenABunchOfTracksGroupsThemAccordingToTheGivenKeySelectorFunc()
         {
             var tracks = AlbumData.AlbumData.Artists1.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
-            var lookup = tracks.ToLookup(t => t.TrackNumber);
-            Assert.That(lookup[1].Count(), Is.EqualTo(2));
-            Assert.That(lookup[2].Count(), Is.EqualTo(2));
-            Assert.That(lookup[3].Count(), Is.EqualTo(2));
-            Assert.That(lookup[4].Count(), Is.EqualTo(2));
-            Assert.That(lookup[5].Count(), Is.EqualTo(2));
-            Assert.That(lookup[6].Count(), Is.EqualTo(1));
-            Assert.That(lookup[7].Count(), Is.EqualTo(1));
+            var enumerableSpy = new EnumerableSpy<Track>(tracks);
+
+            var actual = enumerableSpy.ToLookup(t => t.TrackNumber);
+            // The 'tracks' sequence will have been fully enumerated now
+            // even though we have not accessed 'actual' yet.
+            Assert.That(enumerableSpy.NumCallsToMoveNext, Is.EqualTo(5 + 7 + 1));
+
+            Assert.That(actual[1].Count(), Is.EqualTo(2));
+            Assert.That(actual[2].Count(), Is.EqualTo(2));
+            Assert.That(actual[3].Count(), Is.EqualTo(2));
+            Assert.That(actual[4].Count(), Is.EqualTo(2));
+            Assert.That(actual[5].Count(), Is.EqualTo(2));
+            Assert.That(actual[6].Count(), Is.EqualTo(1));
+            Assert.That(actual[7].Count(), Is.EqualTo(1));
         }
 
         [Test]
         public void ToLookupGivenABunchOfTracksGroupsThemAccordingToTheGivenKeySelectorFuncAndThisTimeWithAnElementSelector()
         {
             var tracks = AlbumData.AlbumData.Artists1.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
-            var lookup = tracks.ToLookup(t => t.TrackNumber, t => t.Title);
-            Assert.That(lookup[1].Count(), Is.EqualTo(2));
-            Assert.That(lookup[2].Count(), Is.EqualTo(2));
-            Assert.That(lookup[3].Count(), Is.EqualTo(2));
-            Assert.That(lookup[4].Count(), Is.EqualTo(2));
-            Assert.That(lookup[5].Count(), Is.EqualTo(2));
-            Assert.That(lookup[6].Count(), Is.EqualTo(1));
-            Assert.That(lookup[7].Count(), Is.EqualTo(1));
+            var actual = tracks.ToLookup(t => t.TrackNumber, t => t.Title);
+            Assert.That(actual[1].Count(), Is.EqualTo(2));
+            Assert.That(actual[2].Count(), Is.EqualTo(2));
+            Assert.That(actual[3].Count(), Is.EqualTo(2));
+            Assert.That(actual[4].Count(), Is.EqualTo(2));
+            Assert.That(actual[5].Count(), Is.EqualTo(2));
+            Assert.That(actual[6].Count(), Is.EqualTo(1));
+            Assert.That(actual[7].Count(), Is.EqualTo(1));
         }
 
         [Test]
@@ -41,11 +47,11 @@ namespace LinqExploration.Grouping
         {
             var tracks = AlbumData.AlbumData.Artists1.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks).ToList();
             var comparer = new TrackLengthInSecondsEqualityComparer();
-            var lookup = tracks.ToLookup(t => t.LengthInSeconds, comparer);
-            Assert.That(lookup[tracks.First().LengthInSeconds].Count(), Is.EqualTo(3));
-            Assert.That(lookup[tracks.First().LengthInSeconds], Has.Exactly(1).Matches<Track>(t => t.Title == "So What"));
-            Assert.That(lookup[tracks.First().LengthInSeconds], Has.Exactly(1).Matches<Track>(t => t.Title == "Freddy Freeloader"));
-            Assert.That(lookup[tracks.First().LengthInSeconds], Has.Exactly(1).Matches<Track>(t => t.Title == "Flamenco Sketches"));
+            var actual = tracks.ToLookup(t => t.LengthInSeconds, comparer);
+            Assert.That(actual[tracks.First().LengthInSeconds].Count(), Is.EqualTo(3));
+            Assert.That(actual[tracks.First().LengthInSeconds], Has.Exactly(1).Matches<Track>(t => t.Title == "So What"));
+            Assert.That(actual[tracks.First().LengthInSeconds], Has.Exactly(1).Matches<Track>(t => t.Title == "Freddy Freeloader"));
+            Assert.That(actual[tracks.First().LengthInSeconds], Has.Exactly(1).Matches<Track>(t => t.Title == "Flamenco Sketches"));
         }
 
         [Test]
@@ -53,11 +59,11 @@ namespace LinqExploration.Grouping
         {
             var tracks = AlbumData.AlbumData.Artists1.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks).ToList();
             var comparer = new TrackLengthInSecondsEqualityComparer();
-            var lookup = tracks.ToLookup(t => t.LengthInSeconds, t => t.Title, comparer);
-            Assert.That(lookup[tracks.First().LengthInSeconds].Count(), Is.EqualTo(3));
-            Assert.That(lookup[tracks.First().LengthInSeconds], Has.Exactly(1).Matches<string>(s => s == "So What"));
-            Assert.That(lookup[tracks.First().LengthInSeconds], Has.Exactly(1).Matches<string>(s => s == "Freddy Freeloader"));
-            Assert.That(lookup[tracks.First().LengthInSeconds], Has.Exactly(1).Matches<string>(s => s == "Flamenco Sketches"));
+            var actual = tracks.ToLookup(t => t.LengthInSeconds, t => t.Title, comparer);
+            Assert.That(actual[tracks.First().LengthInSeconds].Count(), Is.EqualTo(3));
+            Assert.That(actual[tracks.First().LengthInSeconds], Has.Exactly(1).Matches<string>(s => s == "So What"));
+            Assert.That(actual[tracks.First().LengthInSeconds], Has.Exactly(1).Matches<string>(s => s == "Freddy Freeloader"));
+            Assert.That(actual[tracks.First().LengthInSeconds], Has.Exactly(1).Matches<string>(s => s == "Flamenco Sketches"));
         }
     }
 }
