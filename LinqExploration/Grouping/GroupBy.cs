@@ -131,19 +131,22 @@ namespace LinqExploration.Grouping
 
             var actual = enumerableSpy.GroupBy(
                 /* keySelector */ t => t.LengthInSeconds,
-                /* elementSelector */ t => new {t.TrackNumber, t.Title, t.LengthInSeconds},
+                /* elementSelector */ t => new {t.TrackNumber, t.Title, t.LengthInSeconds, t.Length},
                 /* resultSelector */ (key, elements) =>
                     {
                         var elementsList = elements.ToList();
                         return new
                             {
-                                AverageLength = elementsList.Average(e => e.LengthInSeconds),
-                                JoinedTitles = string.Join("|", elementsList.Select(e => string.Format("{0}: {1}", e.TrackNumber, e.Title)))
+                                MinLength = elementsList.First(e1 => e1.LengthInSeconds == elementsList.Min(e2 => e2.LengthInSeconds)).Length,
+                                MaxLength = elementsList.First(e1 => e1.LengthInSeconds == elementsList.Max(e2 => e2.LengthInSeconds)).Length,
+                                TrackNumbersAndTitles = string.Join("|", elementsList.Select(e => string.Format("{0}: {1}", e.TrackNumber, e.Title)))
                             };
                     },
-                /* comparer */ new SimilarTrackLengthsInSecondsEqualityComparer(30));
+                /* comparer */ new SimilarTrackLengthsInSecondsEqualityComparer(30)).ToList();
 
-            Assert.That(actual.First().JoinedTitles, Is.EqualTo("1: So What|2: Freddy Freeloader|5: Flamenco Sketches"));
+            Assert.That(actual.First().MinLength, Is.EqualTo("9:25"));
+            Assert.That(actual.First().MaxLength, Is.EqualTo("9:49"));
+            Assert.That(actual.First().TrackNumbersAndTitles, Is.EqualTo("1: So What|2: Freddy Freeloader|5: Flamenco Sketches"));
         }
     }
 }
