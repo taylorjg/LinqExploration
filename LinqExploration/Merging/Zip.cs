@@ -28,7 +28,7 @@ namespace LinqExploration.Merging
         }
 
         [Test]
-        public void ZipMergesTwoSequencesTogetherButOnlyForTheLengthOfTheShortestSequenceVersion1()
+        public void ZipMergesTwoSequencesTogetherButStopsAtEndOfShortestSequenceWhichIsSequence1()
         {
             var enumerableSpy1 = new EnumerableSpy<int>(Enumerable.Range(1, 5));
             var enumerableSpy2 = new EnumerableSpy<string>(new[] { "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten" });
@@ -44,7 +44,7 @@ namespace LinqExploration.Merging
         }
 
         [Test]
-        public void ZipMergesTwoSequencesTogetherButOnlyForTheLengthOfTheShortestSequenceVersion2()
+        public void ZipMergesTwoSequencesTogetherButStopsAtEndOfShortestSequenceWhichIsSequence2()
         {
             var enumerableSpy1 = new EnumerableSpy<int>(Enumerable.Range(1, 10));
             var enumerableSpy2 = new EnumerableSpy<string>(new[] {"One", "Two", "Three"});

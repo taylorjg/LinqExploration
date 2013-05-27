@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using LinqExploration.AlbumData;
+using LinqExploration.AlbumData.EqualityComparers;
 using NUnit.Framework;
 
 namespace LinqExploration.Grouping
@@ -8,7 +9,7 @@ namespace LinqExploration.Grouping
     internal class GroupBy
     {
         [Test]
-        public void GroupByWithKeySelectorOnly()
+        public void GroupByWithKeySelector()
         {
             var tracks = AlbumData.AlbumData.Artists1.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
             var enumerableSpy = new EnumerableSpy<Track>(tracks);
@@ -42,12 +43,14 @@ namespace LinqExploration.Grouping
         }
 
         [Test]
-        public void GroupByWithKeySelectorAndProjectionFunc()
+        public void GroupByWithKeySelectorAndElementSelector()
         {
             var tracks = AlbumData.AlbumData.Artists1.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
             var enumerableSpy = new EnumerableSpy<Track>(tracks);
 
-            var actual = enumerableSpy.GroupBy(t => t.TrackNumber, t => t.Title);
+            var actual = enumerableSpy.GroupBy(
+                t => t.TrackNumber,
+                t => t.Title);
             Assert.That(enumerableSpy.NumCallsToMoveNext, Is.EqualTo(0));
 
             var actualAsAList = actual.ToList();
@@ -76,7 +79,7 @@ namespace LinqExploration.Grouping
         }
 
         [Test]
-        public void GroupByWithKeySelectorAndResultPerGroupFunc()
+        public void GroupByWithKeySelectorAndResultSelector()
         {
             var tracks = AlbumData.AlbumData.Artists1.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
             var enumerableSpy = new EnumerableSpy<Track>(tracks);
@@ -118,6 +121,29 @@ namespace LinqExploration.Grouping
 
             Assert.That(actualAsAList[6].TrackNumber, Is.EqualTo(7));
             Assert.That(actualAsAList[6].TotalLengthInSeconds, Is.EqualTo(tracks2[6].LengthInSeconds));
+        }
+
+        [Test]
+        public void GroupByWithKeySelectorAndElementSelectorAndResultSelectorAndComparer()
+        {
+            var tracks = AlbumData.AlbumData.Artists1.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
+            var enumerableSpy = new EnumerableSpy<Track>(tracks);
+
+            var actual = enumerableSpy.GroupBy(
+                /* keySelector */ t => t.LengthInSeconds,
+                /* elementSelector */ t => new {t.TrackNumber, t.Title, t.LengthInSeconds},
+                /* resultSelector */ (key, elements) =>
+                    {
+                        var elementsList = elements.ToList();
+                        return new
+                            {
+                                AverageLength = elementsList.Average(e => e.LengthInSeconds),
+                                JoinedTitles = string.Join("|", elementsList.Select(e => string.Format("{0}: {1}", e.TrackNumber, e.Title)))
+                            };
+                    },
+                /* comparer */ new SimilarTrackLengthsInSecondsEqualityComparer(30));
+
+            Assert.That(actual.First().JoinedTitles, Is.EqualTo("1: So What|2: Freddy Freeloader|5: Flamenco Sketches"));
         }
     }
 }

@@ -4,12 +4,19 @@ using System.Collections.Generic;
 namespace LinqExploration.AlbumData.EqualityComparers
 {
     // This comparer considers two track lengths to be the same if they are within 30 seconds of each other.
-    internal class TrackLengthInSecondsEqualityComparer : IEqualityComparer<int>
+    internal class SimilarTrackLengthsInSecondsEqualityComparer : IEqualityComparer<int>
     {
+        private readonly int _differenceThreshold;
+
+        public SimilarTrackLengthsInSecondsEqualityComparer(int differenceThreshold)
+        {
+            _differenceThreshold = differenceThreshold;
+        }
+
         public bool Equals(int trackLengthInSeconds1, int trackLengthInSeconds2)
         {
             var difference = trackLengthInSeconds1 - trackLengthInSeconds2;
-            return (Math.Abs(difference)) < 30;
+            return (Math.Abs(difference)) <= _differenceThreshold;
         }
 
         public int GetHashCode(int trackLengthInSeconds)
