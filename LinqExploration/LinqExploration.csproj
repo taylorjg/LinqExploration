@@ -53,8 +53,11 @@
     <Compile Include="Element\Element.cs" />
     <Compile Include="Equality\SequenceEqual.cs" />
     <Compile Include="AlbumData\EqualityComparers\TrackLengthEqualityComparer.cs" />
+    <Compile Include="Grouping\GroupBy.cs" />
     <Compile Include="Grouping\ToLookup.cs" />
     <Compile Include="AlbumData\EqualityComparers\TrackLengthInSecondsEqualityComparer.cs" />
+    <Compile Include="Partinioning\SkipWhile.cs" />
+    <Compile Include="Partinioning\Skip.cs" />
     <Compile Include="Projection\SelectManyTests.cs" />
     <Compile Include="Projection\SelectTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,7 +81,6 @@
     <Folder Include="Generation\" />
     <Folder Include="Join\" />
     <Folder Include="Ordering\" />
-    <Folder Include="Partinioning\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
