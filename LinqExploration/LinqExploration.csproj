@@ -49,6 +49,7 @@
     <Compile Include="AlbumData\AlbumData.cs" />
     <Compile Include="AlbumData\Artist.cs" />
     <Compile Include="AlbumData\Album.cs" />
+    <Compile Include="AlbumData\AlbumReview.cs" />
     <Compile Include="Concatenation\Concat.cs" />
     <Compile Include="Element\Element.cs" />
     <Compile Include="Equality\SequenceEqual.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Grouping\GroupBy.cs" />
     <Compile Include="Grouping\ToLookup.cs" />
     <Compile Include="AlbumData\EqualityComparers\SimilarTrackLengthsInSecondsEqualityComparer.cs" />
+    <Compile Include="Join\Join.cs" />
     <Compile Include="Merging\Zip.cs" />
     <Compile Include="Partinioning\TakeWhile.cs" />
     <Compile Include="Partinioning\Take.cs" />
@@ -82,7 +84,6 @@
     <Folder Include="Conversion\" />
     <Folder Include="Filtering\" />
     <Folder Include="Generation\" />
-    <Folder Include="Join\" />
     <Folder Include="Ordering\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

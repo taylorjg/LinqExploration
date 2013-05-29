@@ -2,6 +2,40 @@
 {
     internal static class AlbumData
     {
+        public static AlbumReview[] Reviews1
+            {
+                get {
+                    return new[] {
+
+                        // Wombling Free
+                        new AlbumReview {
+                            AlbumId = "0802987026727",
+                            ReviewText = "The Wombles rock!"
+                        },
+
+                        // Kind Of Blue
+                        new AlbumReview {
+                            AlbumId = "074646493526",
+                            ReviewUrl = "http://www.bbc.co.uk/music/reviews/fr25"
+                        },
+                        new AlbumReview {
+                            AlbumId = "074646493526",
+                            ReviewText = "Deeply cool stuff"
+                        },
+                        new AlbumReview {
+                            AlbumId = "074646493526",
+                            ReviewUrl = "http://www.bbc.co.uk/music/reviews/fr25"
+                        },
+
+                        // You Must Believe in Spring
+                        new AlbumReview {
+                            AlbumId = "081227371968",
+                            ReviewUrl = "http://www.allaboutjazz.com/php/article.php?id=13726"
+                        }
+                    };
+                }
+            }
+
         public static Artist[] Artists1 {
             get
             {
@@ -14,6 +48,7 @@
                                     {
                                         new Album
                                             {
+                                                AlbumId = "074646493526",
                                                 Title = "Kind Of Blue",
                                                 Artists = new[] {"Miles Davis", "Bill Evans"},
                                                 Tracks = new[]
@@ -34,6 +69,7 @@
                                     {
                                         new Album
                                             {
+                                                AlbumId = "081227371968",
                                                 Title = "You Must Believe in Spring",
                                                 Artists = new[] {"Bill Evans"},
                                                 Tracks = new[]
