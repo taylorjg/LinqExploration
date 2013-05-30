@@ -22,7 +22,7 @@ namespace LinqExploration.Quantifiers
         [Test]
         public void ContainsReturnsTrueIfTheSequenceContainsTheElementAndAlsoStopsEnumeratingWhenTheElementIsFoundNowWithAnEqualityComparer()
         {
-            var enumerableSpy = new EnumerableSpy<Track>(AlbumData.AlbumData.Artists1.First().Albums.First().Tracks);
+            var enumerableSpy = new EnumerableSpy<Track>(AlbumData.AlbumData.Artists.First().Albums.First().Tracks);
             var value = new Track {Length = "5:37"};
             var actual = enumerableSpy.Contains(value, new TrackLengthEqualityComparer());
             Assert.That(actual, Is.True);

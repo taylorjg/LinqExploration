@@ -57,6 +57,7 @@
     <Compile Include="Grouping\GroupBy.cs" />
     <Compile Include="Grouping\ToLookup.cs" />
     <Compile Include="AlbumData\EqualityComparers\SimilarTrackLengthsInSecondsEqualityComparer.cs" />
+    <Compile Include="Join\GroupJoin.cs" />
     <Compile Include="Join\Join.cs" />
     <Compile Include="Merging\Zip.cs" />
     <Compile Include="Partinioning\TakeWhile.cs" />

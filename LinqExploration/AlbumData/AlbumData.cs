@@ -2,7 +2,7 @@
 {
     internal static class AlbumData
     {
-        public static AlbumReview[] Reviews1
+        public static AlbumReview[] Reviews
             {
                 get {
                     return new[] {
@@ -36,7 +36,7 @@
                 }
             }
 
-        public static Artist[] Artists1 {
+        public static Artist[] Artists {
             get
             {
                 return new[]
