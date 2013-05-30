@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using NUnit.Framework;
 
-namespace LinqExploration.Generation
+namespace LinqExploration.Ordering
 {
     [TestFixture]
     internal class Reverse
