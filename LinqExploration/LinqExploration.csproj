@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aggregation\Aggregate.cs" />
     <Compile Include="AlbumData\AlbumData.cs" />
     <Compile Include="AlbumData\Artist.cs" />
     <Compile Include="AlbumData\Album.cs" />
@@ -81,7 +82,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Aggregation\" />
     <Folder Include="Conversion\" />
     <Folder Include="Filtering\" />
     <Folder Include="Generation\" />
