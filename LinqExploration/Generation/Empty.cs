@@ -10,7 +10,7 @@ namespace LinqExploration.Generation
         public void EmptyReturnsAnEmptyEnumerable()
         {
             var actual = Enumerable.Empty<int>();
-            Assert.That(actual, Is.EquivalentTo(new int[] {}));
+            Assert.That(actual, Is.EqualTo(new int[] { }));
         }
     }
 }

@@ -11,14 +11,14 @@ namespace LinqExploration.Generation
         public void DefaultIfEmptyWithoutDefaultValue()
         {
             var actual = new int[] {}.DefaultIfEmpty();
-            Assert.That(actual, Is.EquivalentTo(new[] {0}));
+            Assert.That(actual, Is.EqualTo(new[] {0}));
         }
 
         [Test]
         public void DefaultIfEmptyWithDefaultValue()
         {
             var actual = new int[] { }.DefaultIfEmpty(76);
-            Assert.That(actual, Is.EquivalentTo(new[] { 76 }));
+            Assert.That(actual, Is.EqualTo(new[] { 76 }));
         }
 
         [Test]

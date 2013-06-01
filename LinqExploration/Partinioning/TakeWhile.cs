@@ -11,7 +11,7 @@ namespace LinqExploration.Partinioning
         {
             var enumerableSpy = new EnumerableSpy<int>(Enumerable.Range(1, 10));
             var actual = enumerableSpy.TakeWhile(n => n < 5);
-            Assert.That(actual, Is.EquivalentTo(new[] { 1, 2, 3, 4 }));
+            Assert.That(actual, Is.EqualTo(new[] { 1, 2, 3, 4 }));
             Assert.That(enumerableSpy.NumCallsToGetEnumerator, Is.EqualTo(1));
             Assert.That(enumerableSpy.NumCallsToMoveNext, Is.EqualTo(5));
             Assert.That(enumerableSpy.NumCallsToDispose, Is.EqualTo(1));
@@ -24,7 +24,7 @@ namespace LinqExploration.Partinioning
             // index: 0  1 2 3 4 5 6 7 8 9
             var enumerableSpy = new EnumerableSpy<int>(Enumerable.Range(1, 10).Reverse());
             var actual = enumerableSpy.TakeWhile((n, index) => n > index);
-            Assert.That(actual, Is.EquivalentTo(new[] { 10, 9, 8, 7, 6 }));
+            Assert.That(actual, Is.EqualTo(new[] { 10, 9, 8, 7, 6 }));
             Assert.That(enumerableSpy.NumCallsToGetEnumerator, Is.EqualTo(1));
             Assert.That(enumerableSpy.NumCallsToMoveNext, Is.EqualTo(6));
             Assert.That(enumerableSpy.NumCallsToDispose, Is.EqualTo(1));

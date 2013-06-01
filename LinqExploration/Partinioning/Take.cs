@@ -11,7 +11,7 @@ namespace LinqExploration.Partinioning
         {
             var enumerableSpy = new EnumerableSpy<int>(Enumerable.Range(1, 10));
             var actual = enumerableSpy.Take(3);
-            Assert.That(actual, Is.EquivalentTo(new[] { 1, 2, 3 }));
+            Assert.That(actual, Is.EqualTo(new[] { 1, 2, 3 }));
             Assert.That(enumerableSpy.NumCallsToGetEnumerator, Is.EqualTo(1));
             Assert.That(enumerableSpy.NumCallsToMoveNext, Is.EqualTo(3));
             Assert.That(enumerableSpy.NumCallsToDispose, Is.EqualTo(1));

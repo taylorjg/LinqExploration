@@ -12,7 +12,7 @@ namespace LinqExploration.Merging
             var enumerableSpy1 = new EnumerableSpy<int>(Enumerable.Range(1, 10));
             var enumerableSpy2 = new EnumerableSpy<string>(new[] {"One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"});
             var actual = enumerableSpy1.Zip(enumerableSpy2, (n, s) => new {Number = n, String = s});
-            Assert.That(actual, Is.EquivalentTo(new[]
+            Assert.That(actual, Is.EqualTo(new[]
                 {
                     new {Number = 1, String = "One"},
                     new {Number = 2, String = "Two"},
@@ -33,7 +33,7 @@ namespace LinqExploration.Merging
             var enumerableSpy1 = new EnumerableSpy<int>(Enumerable.Range(1, 5));
             var enumerableSpy2 = new EnumerableSpy<string>(new[] { "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten" });
             var actual = enumerableSpy1.Zip(enumerableSpy2, (n, s) => new { Number = n, String = s });
-            Assert.That(actual, Is.EquivalentTo(new[]
+            Assert.That(actual, Is.EqualTo(new[]
                 {
                     new {Number = 1, String = "One"},
                     new {Number = 2, String = "Two"},
@@ -49,7 +49,7 @@ namespace LinqExploration.Merging
             var enumerableSpy1 = new EnumerableSpy<int>(Enumerable.Range(1, 10));
             var enumerableSpy2 = new EnumerableSpy<string>(new[] {"One", "Two", "Three"});
             var actual = enumerableSpy1.Zip(enumerableSpy2, (n, s) => new { Number = n, String = s });
-            Assert.That(actual, Is.EquivalentTo(new[]
+            Assert.That(actual, Is.EqualTo(new[]
                 {
                     new {Number = 1, String = "One"},
                     new {Number = 2, String = "Two"},

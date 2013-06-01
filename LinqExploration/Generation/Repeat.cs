@@ -10,7 +10,7 @@ namespace LinqExploration.Generation
         public void RepeatRepeatsAGivenItemAGivenNumberOfTimes()
         {
             var actual = Enumerable.Repeat(53, 7);
-            Assert.That(actual, Is.EquivalentTo(new[] {53, 53, 53, 53, 53, 53, 53}));
+            Assert.That(actual, Is.EqualTo(new[] { 53, 53, 53, 53, 53, 53, 53 }));
         }
     }
 }

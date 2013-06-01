@@ -21,7 +21,7 @@ namespace LinqExploration.Partinioning
             Assert.That(enumerableSpy.NumCallsToMoveNext, Is.EqualTo(4 + 1));
 
             Assert.That(enumerableSpy.NumCallsToDispose, Is.EqualTo(1));
-            Assert.That(actual, Is.EquivalentTo(new[] { 5, 6, 7, 8, 9, 10 }));
+            Assert.That(actual, Is.EqualTo(new[] { 5, 6, 7, 8, 9, 10 }));
         }
     }
 }

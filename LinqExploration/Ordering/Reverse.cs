@@ -10,7 +10,7 @@ namespace LinqExploration.Ordering
         public void ReverseReversesTheOrderOfElementsInASequence()
         {
             var actual = Enumerable.Range(14, 6).Reverse();
-            Assert.That(actual, Is.EquivalentTo(new[] {19, 18, 17, 16, 15, 14}));
+            Assert.That(actual, Is.EqualTo(new[] { 19, 18, 17, 16, 15, 14 }));
         }
     }
 }
