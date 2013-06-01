@@ -4,16 +4,8 @@ using NUnit.Framework;
 namespace LinqExploration.Element
 {
     [TestFixture]
-    internal class Element
+    internal class ElementAtOrDefault
     {
-        [Test]
-        public void ElementAtReturnsTheElementAtTheGivenIndex()
-        {
-            var album = AlbumData.AlbumData.Artists.First().Albums.First();
-            var element = album.Tracks.ElementAt(3);
-            Assert.That(element, Is.SameAs(album.Tracks[3]));
-        }
-
         [Test]
         public void ElementAtOrDefaultReturnsTheElementAtTheGivenIndex()
         {
