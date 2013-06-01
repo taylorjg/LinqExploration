@@ -18,7 +18,7 @@ namespace LinqExploration.Generation
         }
 
         [Test]
-        public void EmptyReturnsTheSameObjectInstanceEachTimeItIsCalledForAGivenType()
+        public void EmptyReturnsTheSameObjectInstanceEachTimeItIsCalledForAGivenTypeVersion1()
         {
             // Arrange, Act
             var actual1 = Enumerable.Empty<int>();
