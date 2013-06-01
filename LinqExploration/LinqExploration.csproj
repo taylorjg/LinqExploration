@@ -47,6 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aggregation\Aggregate.cs" />
+    <Compile Include="Aggregation\Count.cs" />
+    <Compile Include="Aggregation\Max.cs" />
+    <Compile Include="Aggregation\Min.cs" />
+    <Compile Include="Aggregation\Sun.cs" />
     <Compile Include="AlbumData\AlbumData.cs" />
     <Compile Include="AlbumData\Artist.cs" />
     <Compile Include="AlbumData\Album.cs" />
