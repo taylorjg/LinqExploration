@@ -57,6 +57,7 @@
     <Compile Include="AlbumData\AlbumReview.cs" />
     <Compile Include="Concatenation\Concat.cs" />
     <Compile Include="Conversion\Cast.cs" />
+    <Compile Include="Conversion\ToDictionary.cs" />
     <Compile Include="Element\ElementAtOrDefault.cs" />
     <Compile Include="Element\ElementAt.cs" />
     <Compile Include="Filtering\Where.cs" />
