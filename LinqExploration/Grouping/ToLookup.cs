@@ -11,7 +11,7 @@ namespace LinqExploration.Grouping
         [Test]
         public void ToLookupWithKeySelector()
         {
-            var tracks = AlbumData.AlbumData.Artists.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
+            var tracks = SampleData.Artists.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
             var enumerableSpy = new EnumerableSpy<Track>(tracks);
 
             var actual = enumerableSpy.ToLookup(t => t.TrackNumber);
@@ -31,7 +31,7 @@ namespace LinqExploration.Grouping
         [Test]
         public void ToLookupWithKeySelectorAndElementSelector()
         {
-            var tracks = AlbumData.AlbumData.Artists.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
+            var tracks = SampleData.Artists.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
             var actual = tracks.ToLookup(t => t.TrackNumber, t => t.Title);
             Assert.That(actual[1].Count(), Is.EqualTo(2));
             Assert.That(actual[2].Count(), Is.EqualTo(2));
@@ -45,7 +45,7 @@ namespace LinqExploration.Grouping
         [Test]
         public void ToLookupWithKeySelectorAndComparer()
         {
-            var tracks = AlbumData.AlbumData.Artists.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks).ToList();
+            var tracks = SampleData.Artists.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks).ToList();
             var comparer = new SimilarTrackLengthsInSecondsEqualityComparer(30);
             var actual = tracks.ToLookup(t => t.LengthInSeconds, comparer);
             Assert.That(actual[tracks.First().LengthInSeconds].Count(), Is.EqualTo(3));
@@ -57,7 +57,7 @@ namespace LinqExploration.Grouping
         [Test]
         public void ToLookupWithKeySelectorAndElementSelectorAndComparer()
         {
-            var tracks = AlbumData.AlbumData.Artists.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks).ToList();
+            var tracks = SampleData.Artists.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks).ToList();
             var comparer = new SimilarTrackLengthsInSecondsEqualityComparer(30);
             var actual = tracks.ToLookup(t => t.LengthInSeconds, t => t.Title, comparer);
             Assert.That(actual[tracks.First().LengthInSeconds].Count(), Is.EqualTo(3));

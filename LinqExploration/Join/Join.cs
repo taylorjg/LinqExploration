@@ -10,8 +10,8 @@ namespace LinqExploration.Join
         [Test]
         public void JoinUsingImplicitDefaultComparer()
         {
-            var actual = AlbumData.AlbumData.Reviews.Join(
-                AlbumData.AlbumData.Artists.SelectMany(x => x.Albums),
+            var actual = SampleData.Reviews.Join(
+                SampleData.Artists.SelectMany(x => x.Albums),
                 ar1 => ar1.AlbumId,
                 a1 => a1.AlbumId,
                 (ar2, a2) => new {
@@ -37,8 +37,8 @@ namespace LinqExploration.Join
         [Test]
         public void JoinUsingExplicitDefaultComparer()
         {
-            var actual = AlbumData.AlbumData.Reviews.Join(
-                AlbumData.AlbumData.Artists.SelectMany(x => x.Albums),
+            var actual = SampleData.Reviews.Join(
+                SampleData.Artists.SelectMany(x => x.Albums),
                 ar1 => ar1.AlbumId,
                 a1 => a1.AlbumId,
                 (ar2, a2) => new

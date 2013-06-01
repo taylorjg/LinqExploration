@@ -11,7 +11,7 @@ namespace LinqExploration.Grouping
         [Test]
         public void GroupByWithKeySelector()
         {
-            var tracks = AlbumData.AlbumData.Artists.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
+            var tracks = SampleData.Artists.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
             var enumerableSpy = new EnumerableSpy<Track>(tracks);
 
             var actual = enumerableSpy.GroupBy(t => t.TrackNumber);
@@ -45,7 +45,7 @@ namespace LinqExploration.Grouping
         [Test]
         public void GroupByWithKeySelectorAndElementSelector()
         {
-            var tracks = AlbumData.AlbumData.Artists.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
+            var tracks = SampleData.Artists.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
             var enumerableSpy = new EnumerableSpy<Track>(tracks);
 
             var actual = enumerableSpy.GroupBy(
@@ -81,7 +81,7 @@ namespace LinqExploration.Grouping
         [Test]
         public void GroupByWithKeySelectorAndResultSelector()
         {
-            var tracks = AlbumData.AlbumData.Artists.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
+            var tracks = SampleData.Artists.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
             var enumerableSpy = new EnumerableSpy<Track>(tracks);
 
             var actual = enumerableSpy.GroupBy(
@@ -98,8 +98,8 @@ namespace LinqExploration.Grouping
 
             Assert.That(actualAsAList.Count(), Is.EqualTo(7));
 
-            var tracks1 = AlbumData.AlbumData.Artists[0].Albums.First().Tracks;
-            var tracks2 = AlbumData.AlbumData.Artists[1].Albums.First().Tracks;
+            var tracks1 = SampleData.Artists[0].Albums.First().Tracks;
+            var tracks2 = SampleData.Artists[1].Albums.First().Tracks;
 
             Assert.That(actualAsAList[0].TrackNumber, Is.EqualTo(1));
             Assert.That(actualAsAList[0].TotalLengthInSeconds, Is.EqualTo(tracks1[0].LengthInSeconds + tracks2[0].LengthInSeconds));
@@ -126,7 +126,7 @@ namespace LinqExploration.Grouping
         [Test]
         public void GroupByWithKeySelectorAndElementSelectorAndResultSelectorAndComparer()
         {
-            var tracks = AlbumData.AlbumData.Artists.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
+            var tracks = SampleData.Artists.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
             var enumerableSpy = new EnumerableSpy<Track>(tracks);
 
             var actual = enumerableSpy.GroupBy(

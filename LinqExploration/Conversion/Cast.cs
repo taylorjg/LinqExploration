@@ -12,7 +12,7 @@ namespace LinqExploration.Conversion
         public void CastCastsEachElementInASequence()
         {
             // Arrange
-            var albums = AlbumData.AlbumData.Artists.SelectMany(a => a.Albums).ToList();
+            var albums = SampleData.Artists.SelectMany(a => a.Albums).ToList();
             var objects = new List<object>();
             objects.AddRange(albums);
 
@@ -27,7 +27,7 @@ namespace LinqExploration.Conversion
         public void CastThrowsInvalidCastExceptionWhenAskedToCastToWrongType()
         {
             // Arrange
-            var albums = AlbumData.AlbumData.Artists.SelectMany(a => a.Albums).ToList();
+            var albums = SampleData.Artists.SelectMany(a => a.Albums).ToList();
             var objects = new List<object>();
             objects.AddRange(albums);
 

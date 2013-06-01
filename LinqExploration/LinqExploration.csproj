@@ -51,7 +51,8 @@
     <Compile Include="Aggregation\Max.cs" />
     <Compile Include="Aggregation\Min.cs" />
     <Compile Include="Aggregation\Sun.cs" />
-    <Compile Include="AlbumData\AlbumData.cs" />
+    <Compile Include="Conversion\ToList.cs" />
+    <Compile Include="SampleData.cs" />
     <Compile Include="AlbumData\Artist.cs" />
     <Compile Include="AlbumData\Album.cs" />
     <Compile Include="AlbumData\AlbumReview.cs" />

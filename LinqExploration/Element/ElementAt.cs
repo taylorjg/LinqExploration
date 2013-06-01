@@ -9,7 +9,7 @@ namespace LinqExploration.Element
         [Test]
         public void ElementAtReturnsTheElementAtTheGivenIndex()
         {
-            var album = AlbumData.AlbumData.Artists.First().Albums.First();
+            var album = SampleData.Artists.First().Albums.First();
             var element = album.Tracks.ElementAt(3);
             Assert.That(element, Is.SameAs(album.Tracks[3]));
         }

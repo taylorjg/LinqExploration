@@ -13,10 +13,10 @@ namespace LinqExploration.Projection
         [Test]
         public void SelectManyToGetTheTracksOfAllAlbums()
         {
-            var tracks = AlbumData.AlbumData.Artists.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
+            var tracks = SampleData.Artists.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
 
             var totalNumberOfTracks = 0;
-            foreach (var artist in AlbumData.AlbumData.Artists)
+            foreach (var artist in SampleData.Artists)
             {
                 foreach (var album in artist.Albums)
                 {

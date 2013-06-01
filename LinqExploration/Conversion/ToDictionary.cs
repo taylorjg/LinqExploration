@@ -12,7 +12,7 @@ namespace LinqExploration.Conversion
         public void ToDictionaryWithKeySelector()
         {
             // Arrange
-            var tracks = AlbumData.AlbumData.Artists.First().Albums.First().Tracks;
+            var tracks = SampleData.Artists.First().Albums.First().Tracks;
 
             // Act
             var actual = tracks.ToDictionary(t => t.Title);
@@ -31,7 +31,7 @@ namespace LinqExploration.Conversion
         public void ToDictionaryWithKeySelectorAndElementSelector()
         {
             // Arrange
-            var tracks = AlbumData.AlbumData.Artists.First().Albums.First().Tracks;
+            var tracks = SampleData.Artists.First().Albums.First().Tracks;
 
             // Act
             var actual = tracks.ToDictionary(t => t.TrackNumber, t => t.Title);
@@ -50,7 +50,7 @@ namespace LinqExploration.Conversion
         public void ToDictionaryWithKeySelectorAndComparer()
         {
             // Arrange
-            var tracks = AlbumData.AlbumData.Artists.First().Albums.First().Tracks;
+            var tracks = SampleData.Artists.First().Albums.First().Tracks;
 
             // Act
             var actual = tracks.ToDictionary(t => t.Title, StringComparer.CurrentCultureIgnoreCase);
@@ -69,7 +69,7 @@ namespace LinqExploration.Conversion
         public void ToDictionaryWithKeySelectorAndElementSelectorAndComparer()
         {
             // Arrange
-            var tracks = AlbumData.AlbumData.Artists.First().Albums.First().Tracks;
+            var tracks = SampleData.Artists.First().Albums.First().Tracks;
 
             // Act
             var actual = tracks.ToDictionary(t => t.Title, t => t.TrackNumber, StringComparer.CurrentCultureIgnoreCase);

@@ -12,12 +12,12 @@ namespace LinqExploration.Filtering
         public void OfTypeGivenASequenceContainingDifferentTypesReturnsASequenceContainingJustTheGivenType()
         {
             // Arrange
-            var albums = AlbumData.AlbumData.Artists.SelectMany(a => a.Albums).ToList();
+            var albums = SampleData.Artists.SelectMany(a => a.Albums).ToList();
             var tracks = albums.SelectMany(album => album.Tracks).ToList();
             var objects = new List<object>();
             objects.AddRange(albums);
             objects.AddRange(tracks);
-            objects.AddRange(AlbumData.AlbumData.Reviews);
+            objects.AddRange(SampleData.Reviews);
 
             // Act
             var actual1 = objects.OfType<Album>();

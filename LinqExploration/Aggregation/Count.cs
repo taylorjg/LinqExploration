@@ -23,7 +23,7 @@ namespace LinqExploration.Aggregation
         public void CountWithPredicate()
         {
             // Arrange
-            var tracks = AlbumData.AlbumData.Artists.First().Albums.First().Tracks;
+            var tracks = SampleData.Artists.First().Albums.First().Tracks;
 
             // Act
             var actual = tracks.Count(t => t.Title.Contains("Blue") || t.Title.Contains("Green"));

@@ -27,7 +27,7 @@ namespace LinqExploration.Aggregation
         public void MinWithSelector()
         {
             // Arrange
-            var tracks = AlbumData.AlbumData.Artists.First().Albums.First().Tracks;
+            var tracks = SampleData.Artists.First().Albums.First().Tracks;
 
             // Act
             var actual = tracks.Max(t => t.LengthInSeconds);

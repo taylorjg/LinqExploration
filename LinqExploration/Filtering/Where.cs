@@ -10,7 +10,7 @@ namespace LinqExploration.Filtering
         public void WhereReturnsElementsThatMatchTheGivenPredicate()
         {
             // Arange
-            var tracks = AlbumData.AlbumData.Artists.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
+            var tracks = SampleData.Artists.SelectMany(artist => artist.Albums).SelectMany(album => album.Tracks);
 
             // Act
             var actual = tracks.Where(t => t.Title.Contains("Blue") || t.Title.Contains("Green")).Select(t => t.TrackNumber);

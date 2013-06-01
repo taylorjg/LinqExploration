@@ -1,6 +1,8 @@
-﻿namespace LinqExploration.AlbumData
+﻿using LinqExploration.AlbumData;
+
+namespace LinqExploration
 {
-    internal static class AlbumData
+    internal static class SampleData
     {
         public static AlbumReview[] Reviews
             {

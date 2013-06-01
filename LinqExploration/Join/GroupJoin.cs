@@ -11,8 +11,8 @@ namespace LinqExploration.Join
         [Test]
         public void GroupJoinUsingImplicitDefaultComparer()
         {
-            var albums = AlbumData.AlbumData.Artists.SelectMany(x => x.Albums);
-            var reviews = AlbumData.AlbumData.Reviews;
+            var albums = SampleData.Artists.SelectMany(x => x.Albums);
+            var reviews = SampleData.Reviews;
 
             albums = albums.Concat(new[] {new Album
                 {
@@ -45,8 +45,8 @@ namespace LinqExploration.Join
         [Test]
         public void GroupJoinUsingExplicitDefaultComparer()
         {
-            var albums = AlbumData.AlbumData.Artists.SelectMany(x => x.Albums);
-            var reviews = AlbumData.AlbumData.Reviews;
+            var albums = SampleData.Artists.SelectMany(x => x.Albums);
+            var reviews = SampleData.Reviews;
 
             albums = albums.Concat(new[] {new Album
                 {
