@@ -99,7 +99,6 @@ namespace LinqExploration.Projection
         }
 
         [Test]
-        // NOTE: This query produces exactly the same results as SelectWithCollectionSelectorTest3() above.
         public void SelectWithCollectionSelectorThatTakesAnIndexToo()
         {
 
@@ -127,6 +126,7 @@ namespace LinqExploration.Projection
         }
 
         [Test]
+        // NOTE: This query produces exactly the same results as SelectWithCollectionSelectorTest3() above.
         public void SelectWithCollectionSelectorAndResultSelector()
         {
             // Arrange, Act
