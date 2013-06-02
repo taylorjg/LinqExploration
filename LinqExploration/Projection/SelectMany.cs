@@ -101,7 +101,6 @@ namespace LinqExploration.Projection
         [Test]
         public void SelectWithCollectionSelectorThatTakesAnIndexToo()
         {
-
             // Arrange, Act
             var actual = _albums.SelectMany(
                 (album, index) => album.Tracks.Select(track => new {AlbumIndex = index, track.Title})
