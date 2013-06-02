@@ -54,6 +54,8 @@
     <Compile Include="Aggregation\Sum.cs" />
     <Compile Include="Conversion\ToArray.cs" />
     <Compile Include="Conversion\ToList.cs" />
+    <Compile Include="Element\FirstOrDefault.cs" />
+    <Compile Include="Element\First.cs" />
     <Compile Include="SampleData.cs" />
     <Compile Include="AlbumData\Artist.cs" />
     <Compile Include="AlbumData\Album.cs" />
