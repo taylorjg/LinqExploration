@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace LinqExploration.Projection
 {
     [TestFixture]
-    internal class SelectManyTests
+    internal class SelectMany
     {
         [Test]
         public void SelectManyToGetTheTracksOfAllAlbums()

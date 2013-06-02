@@ -39,5 +39,15 @@ namespace LinqExploration.Generation
             // Assert
             Assert.That(actual, Has.All.SameAs(actual.First()));
         }
+
+        [Test]
+        public void EmptyReturnsAnArray()
+        {
+            // Arrange, Act
+            var actual = Enumerable.Empty<int>();
+
+            // Assert
+            Assert.That(actual, Is.InstanceOf<int[]>());
+        }
     }
 }

@@ -47,10 +47,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aggregation\Aggregate.cs" />
+    <Compile Include="Aggregation\LongCount.cs" />
     <Compile Include="Aggregation\Count.cs" />
     <Compile Include="Aggregation\Max.cs" />
     <Compile Include="Aggregation\Min.cs" />
-    <Compile Include="Aggregation\Sun.cs" />
+    <Compile Include="Aggregation\Sum.cs" />
     <Compile Include="Conversion\ToArray.cs" />
     <Compile Include="Conversion\ToList.cs" />
     <Compile Include="SampleData.cs" />
@@ -81,8 +82,8 @@
     <Compile Include="Partinioning\Take.cs" />
     <Compile Include="Partinioning\SkipWhile.cs" />
     <Compile Include="Partinioning\Skip.cs" />
-    <Compile Include="Projection\SelectManyTests.cs" />
-    <Compile Include="Projection\SelectTests.cs" />
+    <Compile Include="Projection\SelectMany.cs" />
+    <Compile Include="Projection\Select.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quantifiers\Any.cs" />
     <Compile Include="EnumerableSpy.cs" />

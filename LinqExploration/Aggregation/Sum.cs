@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace LinqExploration.Aggregation
 {
     [TestFixture]
-    internal class Sun
+    internal class Sum
     {
         [Test]
         public void SumWithoutSelector()
