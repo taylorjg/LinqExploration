@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using LinqExploration.AlbumData.EqualityComparers;
 using NUnit.Framework;
 
@@ -76,6 +77,20 @@ namespace LinqExploration.Equality
 
             // Assert
             Assert.That(actual, Is.False);
+        }
+
+        [Test]
+        public void SequenceEqualWithComparer()
+        {
+            // Arrange
+            var sequence1 = new[] {"STRING 1", "STRING 2"};
+            var sequence2 = new[] {"string 1", "string 2"};
+
+            // Act
+            var actual = sequence1.SequenceEqual(sequence2, StringComparer.CurrentCultureIgnoreCase);
+
+            // Assert
+            Assert.That(actual, Is.True);
         }
     }
 }
