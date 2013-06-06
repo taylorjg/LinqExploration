@@ -37,5 +37,45 @@ namespace LinqExploration.Equality
             var actual = tracks1.SequenceEqual(tracks2);
             Assert.That(actual, Is.False);
         }
+
+        [Test]
+        public void SequenceEqualGivenTwoEquivalentSequencesOfAnonymousTypesReturnsTrue()
+        {
+            // Arrange
+            var sequence1 = new[] {
+                    new { Prop1 = "ABC", Prop2 = 123 },
+                    new { Prop1 = "XYZ", Prop2 = 456 }
+                };
+            var sequence2 = new[] {
+                    new { Prop1 = "ABC", Prop2 = 123 },
+                    new { Prop1 = "XYZ", Prop2 = 456 }
+                };
+
+            // Act
+            var actual = sequence1.SequenceEqual(sequence2);
+
+            // Assert
+            Assert.That(actual, Is.True);
+        }
+
+        [Test]
+        public void SequenceEqualGivenTwoSequencesOfEquivalentAnonymousTypesButWithElementsInADifferentOrderReturnsFalse()
+        {
+            // Arrange
+            var sequence1 = new[] {
+                    new { Prop1 = "ABC", Prop2 = 123 },
+                    new { Prop1 = "XYZ", Prop2 = 456 }
+                };
+            var sequence2 = new[] {
+                    new { Prop1 = "XYZ", Prop2 = 456 },
+                    new { Prop1 = "ABC", Prop2 = 123 }
+                };
+
+            // Act
+            var actual = sequence1.SequenceEqual(sequence2);
+
+            // Assert
+            Assert.That(actual, Is.False);
+        }
     }
 }
